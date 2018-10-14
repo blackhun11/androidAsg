@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/ivDoll"
+        android:layout_width="87dp"
+        android:layout_height="85dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/tvDollName"
+        android:layout_marginStart="14dp"
+        android:contentDescription="@null" />
+
+    <TextView
+        android:id="@+id/tvDollName"
+        android:layout_width="188dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/btnView"
+        android:layout_marginEnd="84dp"
+        android:layout_marginTop="0dp"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvDollDesc"
+        android:layout_width="190dp"
+        android:layout_height="56dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/tvDollName"
+        android:layout_marginTop="57dp"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/btnEdit"
+        android:layout_width="64dp"
+        android:layout_height="32dp"
+        android:layout_alignBottom="@+id/ivDoll"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="12dp"
+        android:background="#3e9fb7"
+        android:text="Edit"
+        android:textSize="12sp" />
+
+    <Button
+        android:id="@+id/btnView"
+        android:layout_width="64dp"
+        android:layout_height="32dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/btnEdit"
+        android:layout_marginTop="14dp"
+        android:background="#3e9fb7"
+        android:text="View"
+        android:textSize="12sp" />
+
+</RelativeLayout>
