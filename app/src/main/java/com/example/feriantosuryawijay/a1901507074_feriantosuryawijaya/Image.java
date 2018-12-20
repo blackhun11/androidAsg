@@ -1,15 +1,18 @@
 package com.example.feriantosuryawijay.a1901507074_feriantosuryawijaya;
 
+/* Image Model */
 public class Image {
 
     private int id;
     private String name;
 
-    public Image(int id, String name) {
+    /* Image constructor */
+    Image ( int id , String name ) {
         this.id = id;
         this.name = name;
     }
 
+    /* Image setter getter */
     public String getName () {
         return name;
     }

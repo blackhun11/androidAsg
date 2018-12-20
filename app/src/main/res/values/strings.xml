@@ -1,5 +1,33 @@
 <resources>
-    <string name="app_name">1901507074_FeriantoSuryaWijaya</string>
+    <string name="app_name">BlueDoll</string>
     <string name="title_activity_view_doll_detail">ViewDollDetailActivity</string>
+    <string name="title">BlueDoll</string>
+    <string name="name">Enter Your Name</string>
+    <string name="email">Enter Your Email</string>
+    <string name="password">Enter Your Password</string>
+    <string name="passwordConf">Enter Your Password Confirmation</string>
+    <string name="agreement">I agree with this term &amp; condition</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="regisLink">No account yet? Create one</string>
+    <string name="loginLink">Already a member? Login</string>
+    <string name="dollName">Enter Doll Name</string>
+    <string name="dollDescription">Enter Doll Description</string>
+    <string name="delete">Delete</string>
+    <string name="phone">Enter Your PhoneNumber</string>
+    <string name="share">Share</string>
+    <string name="edit">Edit</string>
+    <string name="view">View</string>
+    <string name="save">Save</string>
+    <string name="modify">Modify</string>
 
+    <!--hardcoded string array for dollSpinner if needed-->
+
+    <string-array name="dollSpinner">
+        <item>Choose Doll Image</item>
+        <item>Grizzly</item>
+        <item>Panda</item>
+        <item>Ice Bear</item>
+    </string-array>
+    <string name="title_activity_maps">Map</string>
 </resources>

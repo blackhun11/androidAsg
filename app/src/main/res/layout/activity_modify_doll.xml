@@ -1,56 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/modifyDoll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:padding="16dp"
     tools:context=".ModifyDollActivity">
-
-    <EditText
-        android:id="@+id/etDollName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter Doll Name"
-        android:inputType="text" />
-
-    <EditText
-        android:id="@+id/etDollDesc"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter Doll Description"
-        android:inputType="text"/>
-
-    <Spinner
-        android:id="@+id/spinnerImage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp">
-
-    </Spinner>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btnSaveDoll"
-            android:layout_width="0dp"
+        <EditText
+            android:id="@+id/etDollName"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Save" />
+            android:layout_margin="10dp"
+            android:hint="@string/dollName"
+            android:inputType="text"
+            android:singleLine="true" />
 
-        <Button
-            android:id="@+id/btnDeleteDoll"
-            android:layout_width="0dp"
+        <EditText
+            android:id="@+id/etDollDesc"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Delete" />
+            android:layout_margin="10dp"
+            android:hint="@string/dollDescription"
+            android:inputType="text"
+            android:singleLine="true" />
+
+        <Spinner
+            android:id="@+id/spinnerImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_marginBottom="30dp"
+            android:spinnerMode="dialog" />
+
+        <LinearLayout
+            style="@android:style/Widget.Material.ButtonBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnSaveDoll"
+                style="@android:style/ButtonBar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@color/backgroundButton"
+                android:textColor="@color/textButton" />
+
+            <Button
+                android:id="@+id/btnDeleteDoll"
+                style="@android:style/ButtonBar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@color/backgroundButton"
+                android:text="@string/delete"
+                android:textColor="@color/textButton" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
-
-
-</LinearLayout>
+</ScrollView>

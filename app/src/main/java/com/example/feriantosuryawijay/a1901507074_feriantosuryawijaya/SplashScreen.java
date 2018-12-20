@@ -5,33 +5,30 @@ import android.content.SharedPreferences;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.ArrayList;
 
 public class SplashScreen extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate ( Bundle savedInstanceState ) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        SharedPreferences sp=this.getSharedPreferences("Login", MODE_PRIVATE);
-
-        final String username=sp.getString("Username", null);
+        SharedPreferences sp = this.getSharedPreferences("Login" , MODE_PRIVATE);
+        final String username = sp.getString("Username" , null);
         new Handler().postDelayed(new Runnable() {
             @Override
-            public void run() {
-                if (username == null){
-                    startActivity(new Intent(SplashScreen.this,LoginActivity.class));
-                }else{
+            public void run () {
+                /* if already login, go to Main Page, else redirect to Login Page by checking sharedpreferences*/
+                if (username == null) {
+                    startActivity(new Intent(SplashScreen.this , LoginActivity.class));
+                } else {
                     Toast.makeText(SplashScreen.this , "Welcome, " + username , Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(SplashScreen.this,ViewDollActivity.class));
+                    startActivity(new Intent(SplashScreen.this , ViewDollActivity.class));
                 }
                 finish();
             }
-        },2000);
+        } , 2000);
     }
 
 }
