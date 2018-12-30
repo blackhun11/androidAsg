@@ -84,9 +84,9 @@ public class ModifyDollActivity extends BaseActivity implements View.OnClickList
     }
 
     private void populate () {
-        imageDB.store(R.drawable.grizzly_doll , "Grizzy");
-        imageDB.store(R.drawable.panda_doll , "Panda");
-        imageDB.store(R.drawable.ice_bear_doll , "Ice Bear");
+        imageDB.store(new Image(R.drawable.grizzly_doll, "Grizzly"));
+        imageDB.store(new Image(R.drawable.panda_doll, "Panda"));
+        imageDB.store(new Image(R.drawable.ice_bear_doll, "Ice Bear"));
     }
 
     @Override
@@ -102,7 +102,7 @@ public class ModifyDollActivity extends BaseActivity implements View.OnClickList
         if (v == btnSaveDoll) {
 
 
-            boolean isExist = dollsDB.checkDollExist(nameNew);
+            boolean isExist = dollsDB.checkDollExist(new Doll(nameNew));
 
 //            for (Doll doll : dollList) {
 //                if (doll.getName().equals(nameNew)) {

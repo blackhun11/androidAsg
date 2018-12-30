@@ -16,8 +16,12 @@ public class Doll {
         this.description = description;
     }
 
-    Doll(){
+    Doll () {
 
+    }
+
+    Doll ( String name ) {
+        this.name = name;
     }
 
     /* Doll setter getter */

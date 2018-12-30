@@ -10,10 +10,7 @@ import java.util.List;
 
 import static com.example.feriantosuryawijay.a1901507074_feriantosuryawijaya.DBHelper.FIELD_IMAGE_ID;
 import static com.example.feriantosuryawijay.a1901507074_feriantosuryawijaya.DBHelper.FIELD_IMAGE_NAME;
-import static com.example.feriantosuryawijay.a1901507074_feriantosuryawijaya.DBHelper.FIELD_USER_EMAIL;
-import static com.example.feriantosuryawijay.a1901507074_feriantosuryawijaya.DBHelper.FIELD_USER_ID;
 import static com.example.feriantosuryawijay.a1901507074_feriantosuryawijaya.DBHelper.TABLE_IMAGES;
-import static com.example.feriantosuryawijay.a1901507074_feriantosuryawijaya.DBHelper.TABLE_USERS;
 
 public class ImageDB {
 
@@ -23,17 +20,17 @@ public class ImageDB {
         dbHelper = new DBHelper(context);
     }
 
-    public void store ( int id , String name ) {
+    public void store ( Image image ) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(FIELD_IMAGE_ID , id);
-        contentValues.put(FIELD_IMAGE_NAME , name);
+        contentValues.put(FIELD_IMAGE_ID , image.getId());
+        contentValues.put(FIELD_IMAGE_NAME , image.getName());
         db.insert(TABLE_IMAGES , null , contentValues);
         db.close();
     }
 
     public boolean checkImageExists () {
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.query(TABLE_IMAGES , null , null , null , null , null , null);
         cursor.moveToFirst();
         boolean exists = cursor.getCount() != 0;

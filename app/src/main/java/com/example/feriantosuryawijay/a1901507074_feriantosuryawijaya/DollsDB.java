@@ -12,7 +12,6 @@ import static com.example.feriantosuryawijay.a1901507074_feriantosuryawijaya.DBH
 import static com.example.feriantosuryawijay.a1901507074_feriantosuryawijaya.DBHelper.FIELD_DOLL_ID;
 import static com.example.feriantosuryawijay.a1901507074_feriantosuryawijaya.DBHelper.FIELD_DOLL_IMAGE_ID;
 import static com.example.feriantosuryawijay.a1901507074_feriantosuryawijaya.DBHelper.FIELD_DOLL_NAME;
-import static com.example.feriantosuryawijay.a1901507074_feriantosuryawijaya.DBHelper.FIELD_IMAGE_ID;
 import static com.example.feriantosuryawijay.a1901507074_feriantosuryawijaya.DBHelper.TABLE_DOLLS;
 
 public class DollsDB {
@@ -23,10 +22,10 @@ public class DollsDB {
         dbHelper = new DBHelper(context);
     }
 
-    public boolean checkDollExist ( String name ) {
+    public boolean checkDollExist ( Doll doll ) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String selection = String.format("%s = ?" , FIELD_DOLL_NAME);
-        String[] selectionArgs = new String[]{name};
+        String[] selectionArgs = new String[]{doll.getName()};
         Cursor cursor = db.query(TABLE_DOLLS , null , selection , selectionArgs , null , null , null);
         cursor.moveToFirst();
         boolean exists = cursor.getCount() != 0;
