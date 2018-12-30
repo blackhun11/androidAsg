@@ -53,7 +53,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             String email = etEmail.getText().toString().trim();
             String password = etPassword.getText().toString().trim();
 
-            String name = usersDB.authenticateUser(email, password);
+            User user = new User();
+            user.setEmail(email);
+            user.setPassword(password);
+
+            String name = usersDB.authenticateUser(user);
 
 //            for (User user : userList) {
 //                if (user.getEmail().equals(email) && user.getPassword().equals(password)) {

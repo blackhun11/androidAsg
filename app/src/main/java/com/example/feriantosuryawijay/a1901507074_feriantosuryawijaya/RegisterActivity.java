@@ -65,7 +65,12 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 }
             }
 
-            boolean isExist = usersDB.checkUserExists(email);
+            User user = new User();
+            user.setName(name);
+            user.setEmail(email);
+            user.setPassword(password);
+
+            boolean isExist = usersDB.checkUserExists(user);
 
 //            for (User user : userList) {
 //                if (user.getEmail().equals(email)) {
@@ -104,7 +109,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 //                        1 : userList.get(userList.size() - 1).getId() + 1;
 //                userList.add(new User(id , name , email , password));
 
-                usersDB.store(name , email , password);
+                usersDB.store(user);
                 snack(view , "Success to register!");
                 resetET(new EditText[]{etName , etEmail , etPassword , etPasswordConf});
                 cbxAgreement.setChecked(false);

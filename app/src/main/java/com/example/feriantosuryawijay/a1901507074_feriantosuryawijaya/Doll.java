@@ -16,6 +16,10 @@ public class Doll {
         this.description = description;
     }
 
+    Doll(){
+
+    }
+
     /* Doll setter getter */
     public int getId () {
         return id;

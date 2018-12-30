@@ -18,20 +18,20 @@ public class UsersDB {
         dbHelper = new DBHelper(context);
     }
 
-    public void store ( String name , String email , String password ) {
+    public void store ( User user ) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(FIELD_USER_NAME , name);
-        contentValues.put(FIELD_USER_EMAIL , email);
-        contentValues.put(FIELD_USER_PASSWORD , password);
+        contentValues.put(FIELD_USER_NAME , user.getName());
+        contentValues.put(FIELD_USER_EMAIL , user.getEmail());
+        contentValues.put(FIELD_USER_PASSWORD , user.getPassword());
         db.insert(TABLE_USERS , null , contentValues);
         db.close();
     }
 
-    public boolean checkUserExists ( String email ) {
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
+    public boolean checkUserExists ( User user ) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
         String selection = String.format("%s = ?" , FIELD_USER_EMAIL);
-        String[] selectionArgs = new String[]{email};
+        String[] selectionArgs = new String[]{user.getEmail()};
         Cursor cursor = db.query(TABLE_USERS , null , selection , selectionArgs , null , null , null);
         cursor.moveToFirst();
         boolean exists = cursor.getCount() != 0;
@@ -39,11 +39,11 @@ public class UsersDB {
         return exists;
     }
 
-    public String authenticateUser ( String email , String password ) {
+    public String authenticateUser ( User user ) {
         String name = "";
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
         String selection = String.format("%s = ? AND %s = ?" , FIELD_USER_EMAIL , FIELD_USER_PASSWORD);
-        String[] selectionArgs = new String[]{email , password};
+        String[] selectionArgs = new String[]{user.getEmail() , user.getPassword()};
         Cursor cursor = db.query(TABLE_USERS , null , selection , selectionArgs , null , null , null);
         cursor.moveToFirst();
         if (cursor.getCount() != 0) name = cursor.getString(cursor.getColumnIndex(FIELD_USER_NAME));

@@ -100,6 +100,8 @@ public class ModifyDollActivity extends BaseActivity implements View.OnClickList
         final String imageInputNew = spinnerImage.getSelectedItem().toString();
         final int spinnerIndex = spinnerImage.getSelectedItemPosition();
         if (v == btnSaveDoll) {
+
+
             boolean isExist = dollsDB.checkDollExist(nameNew);
 
 //            for (Doll doll : dollList) {
@@ -128,6 +130,8 @@ public class ModifyDollActivity extends BaseActivity implements View.OnClickList
 
                 final int imageIDNew = imageID;
 
+                final Doll doll = new Doll(id , imageIDNew , nameNew , descriptionNew);
+
                 if (id != 0) {
                     /* modify */
                     builder.setTitle("Modify Confirmation");
@@ -136,7 +140,7 @@ public class ModifyDollActivity extends BaseActivity implements View.OnClickList
                         @Override
                         public void onClick ( DialogInterface dialog , int which ) {
 //                            dollList.set(position , new Doll(id , nameNew , descriptionNew , imageIDNew));
-                            dollsDB.update(id , nameNew , descriptionNew , imageIDNew);
+                            dollsDB.update(doll);
                             Toast.makeText(ModifyDollActivity.this , "Modified" , Toast.LENGTH_SHORT).show();
                         }
                     });
@@ -159,7 +163,7 @@ public class ModifyDollActivity extends BaseActivity implements View.OnClickList
                         @Override
                         public void onClick ( DialogInterface dialog , int which ) {
 //                            dollList.add(new Doll(id , nameNew , descriptionNew , imageIDNew));
-                            dollsDB.store(nameNew , descriptionNew , imageIDNew);
+                            dollsDB.store(doll);
                             resetET(new EditText[]{etDollName , etDollDesc});
                             Toast.makeText(ModifyDollActivity.this , "Success to add " + nameNew , Toast.LENGTH_SHORT).show();
                         }
@@ -183,8 +187,9 @@ public class ModifyDollActivity extends BaseActivity implements View.OnClickList
             builder.setPositiveButton("Yes" , new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick ( DialogInterface dialog , int which ) {
-
-                    dollsDB.delete(id);
+                    Doll doll = new Doll();
+                    doll.setId(id);
+                    dollsDB.delete(doll);
 //                    dollList.remove(id);
                     startActivity(new Intent(ModifyDollActivity.this , ViewDollActivity.class));
                     finish();

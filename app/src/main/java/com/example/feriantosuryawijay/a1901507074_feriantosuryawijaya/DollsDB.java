@@ -24,7 +24,7 @@ public class DollsDB {
     }
 
     public boolean checkDollExist ( String name ) {
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
         String selection = String.format("%s = ?" , FIELD_DOLL_NAME);
         String[] selectionArgs = new String[]{name};
         Cursor cursor = db.query(TABLE_DOLLS , null , selection , selectionArgs , null , null , null);
@@ -34,39 +34,39 @@ public class DollsDB {
         return exists;
     }
 
-    public void update ( int id , String name , String description , int image ) {
+    public void update ( Doll doll ) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(FIELD_DOLL_IMAGE_ID , image);
-        cv.put(FIELD_DOLL_NAME , name);
-        cv.put(FIELD_DOLL_DESCRIPTION , description);
+        cv.put(FIELD_DOLL_IMAGE_ID , doll.getImage());
+        cv.put(FIELD_DOLL_NAME , doll.getName());
+        cv.put(FIELD_DOLL_DESCRIPTION , doll.getDescription());
         String whereClause = String.format("%s = ?" , FIELD_DOLL_ID);
-        String[] whereArgs = new String[]{"" + id};
+        String[] whereArgs = new String[]{"" + doll.getId()};
         db.update(TABLE_DOLLS , cv , whereClause , whereArgs);
         db.close();
     }
 
-    public void store ( String name , String description , int image ) {
+    public void store ( Doll doll ) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(FIELD_DOLL_IMAGE_ID , image);
-        cv.put(FIELD_DOLL_NAME , name);
-        cv.put(FIELD_DOLL_DESCRIPTION , description);
+        cv.put(FIELD_DOLL_IMAGE_ID , doll.getImage());
+        cv.put(FIELD_DOLL_NAME , doll.getName());
+        cv.put(FIELD_DOLL_DESCRIPTION , doll.getDescription());
         db.insert(TABLE_DOLLS , null , cv);
         db.close();
     }
 
-    public void delete ( int id ) {
+    public void delete ( Doll doll ) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         String whereClause = String.format("%s = ?" , FIELD_DOLL_ID);
-        String[] whereArgs = new String[]{"" + id};
+        String[] whereArgs = new String[]{"" + doll.getId()};
         db.delete(TABLE_DOLLS , whereClause , whereArgs);
         db.close();
     }
 
-    public List<Doll> show (){
+    public List<Doll> show () {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.query(TABLE_DOLLS, null , null , null , null , null , null);
+        Cursor cursor = db.query(TABLE_DOLLS , null , null , null , null , null , null);
         List<Doll> dollList = new ArrayList<>();
         while (cursor.moveToNext()) {
 
@@ -75,7 +75,7 @@ public class DollsDB {
             String name = cursor.getString(cursor.getColumnIndex(FIELD_DOLL_NAME));
             String description = cursor.getString(cursor.getColumnIndex(FIELD_DOLL_DESCRIPTION));
 
-            Doll doll = new Doll(id, image_id, name, description);
+            Doll doll = new Doll(id , image_id , name , description);
             dollList.add(doll);
         }
         cursor.close();
